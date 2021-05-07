@@ -1,0 +1,46 @@
+VERSION: 0.1
+model:
+  fp16: False
+  fp16_opt_level: 'O1'
+  gpus: '2 3'
+  n_gpu: 4
+  device: 'cuda:2'
+  model_path: '/source/d0/embedding/transformer_based/glyce_bert/'
+  continue_training_path: ''
+  continue_training: False
+scheduler:
+  warmup: False
+  use_scheduler: False
+  warmup_prob: 0.1
+optimizer:
+  lr: 0.0003
+  weight_decay: 0.01
+loss_fn:
+  type: "cross entropy"
+common:
+  vec_type: 'pooler'
+  pool: False
+datasets:
+  max_length: 32
+  train_path: '/source/d0/NLPSource/STSDatasets/LCQMC/dev.txt'
+  eval_path: '/source/d0/NLPSource/STSDatasets/LCQMC/dev.txt'
+  test_path: '/source/d0/NLPSource/STSDatasets/LCQMC/test.txt'
+training:
+  seed: 3306
+  do_adv: False
+  do_dp: False
+  adv_target: ['word_embeddings', 'position_embeddings']
+  max_steps: 0
+  gradient_accumulation_steps: 1
+  num_train_epochs: 4
+  model_type: glyce_bert_lr_5e-5
+  save_path: /source/d0/STS/save/
+  batch_size: 32
+  max_grad_norm: 1.0
+  logging_steps: 100
+  log_path: /source/d0/STS/log/
+  num_labels: 2
+  glyph_ratio: 1.0
+  glyph_decay: 1.0
+  glyph_warmup: 0
+  
